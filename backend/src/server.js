@@ -22,7 +22,10 @@ app.get('/api/health', (req, res) => {
 app.post('/api/urls', (req, res) => {
   const { url } = req.body;
 
-  if (!url) {
+  const isHttp = (u) => { try { return /^https?:$/.test(new URL(u).protocol); } catch { return false; } };
+  if (typeof url !== 'string' || !isHttp(url)) {
+    return res.status(400).json({ error: 'a valid http(s) url is required' });
+  }
     return res.status(400).json({ error: 'url is required' });
   }
 
