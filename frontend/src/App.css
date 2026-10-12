@@ -39,3 +39,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.clicks {
+  color: #888;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}

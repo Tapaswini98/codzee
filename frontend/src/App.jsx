@@ -46,6 +46,7 @@ function App() {
           <li key={entry.code}>
             <a href={entry.shortUrl}>{entry.shortUrl}</a>
             <span className="original-url">{entry.originalUrl}</span>
+            <span className="clicks">{entry.clicks} clicks</span>
           </li>
         ))}
       </ul>

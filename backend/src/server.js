@@ -1,7 +1,12 @@
 import cors from 'cors';
 import express from 'express';
 
-import { createShortUrl, getUrlByCode, listUrls } from './urlStore.js';
+import {
+  createShortUrl,
+  getUrlByCode,
+  incrementClicks,
+  listUrls,
+} from './urlStore.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -40,6 +45,7 @@ app.get('/:code', (req, res) => {
     return res.status(404).json({ error: 'short url not found' });
   }
 
+  incrementClicks(entry.code);
   res.redirect(entry.originalUrl);
 });
 
