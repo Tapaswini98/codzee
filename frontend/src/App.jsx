@@ -31,7 +31,8 @@ function App() {
 
       <form onSubmit={handleSubmit} className="shorten-form">
         <input
-          type="text"
+          type="url"
+          required
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="https://example.com/some/long/path"
