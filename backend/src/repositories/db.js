@@ -4,10 +4,12 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataDir = path.join(__dirname, '..', 'data');
-fs.mkdirSync(dataDir, { recursive: true });
+const dataDir = path.join(__dirname, '..', '..', 'data');
 
 const dbPath = process.env.DB_PATH || path.join(dataDir, 'url-shortener.sqlite');
+if (!process.env.DB_PATH) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
 export const db = new DatabaseSync(dbPath);
 
 db.exec(`
